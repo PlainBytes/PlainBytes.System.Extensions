@@ -1,4 +1,5 @@
-[Logo][assets\system-extensions.png]
+<img src="https://github.com/BriskBytes/BriskBytes.System.Extensions/blob/master/assets/system-extensions.png?raw=true" width="240">
+
 # System.Extensions
 
 Collection of extension method for the BCL that I wished it had.
