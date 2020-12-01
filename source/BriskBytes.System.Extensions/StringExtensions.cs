@@ -1,4 +1,4 @@
-﻿namespace BriskBytes.System.Extensions
+﻿namespace PlainBytes.System.Extensions
 {
     public static class StringExtensions
     {

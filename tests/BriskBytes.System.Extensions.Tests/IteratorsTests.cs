@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BriskBytes.System.Extensions.Tests
+namespace PlainBytes.System.Extensions.Tests
 {
     [TestClass]
     public class IteratorsTests

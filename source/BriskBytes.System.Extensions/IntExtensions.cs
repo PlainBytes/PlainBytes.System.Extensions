@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BriskBytes.System.Extensions
+namespace PlainBytes.System.Extensions
 {
     public static class IntExtensions
     {

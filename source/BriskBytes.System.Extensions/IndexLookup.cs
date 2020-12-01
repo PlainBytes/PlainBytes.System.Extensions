@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace BriskBytes.System.Extensions
+namespace PlainBytes.System.Extensions
 {
     public static class IndexLookup
     {

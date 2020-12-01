@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriskBytes.System.Extensions", "source\BriskBytes.System.Extensions\BriskBytes.System.Extensions.csproj", "{1A22792E-BBCA-4504-8827-11883AE4BCA9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlainBytes.System.Extensions", "source\BriskBytes.System.Extensions\PlainBytes.System.Extensions.csproj", "{1A22792E-BBCA-4504-8827-11883AE4BCA9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BriskBytes.System.Extensions.Tests", "tests\BriskBytes.System.Extensions.Tests\BriskBytes.System.Extensions.Tests.csproj", "{045E38E1-56AC-46BD-90ED-8CDEC46209FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlainBytes.System.Extensions.Tests", "tests\BriskBytes.System.Extensions.Tests\PlainBytes.System.Extensions.Tests.csproj", "{045E38E1-56AC-46BD-90ED-8CDEC46209FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

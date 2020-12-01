@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\source\BriskBytes.System.Extensions\BriskBytes.System.Extensions.csproj" />
+    <ProjectReference Include="..\..\source\BriskBytes.System.Extensions\PlainBytes.System.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

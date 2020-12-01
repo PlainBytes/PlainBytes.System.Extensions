@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace BriskBytes.System.Extensions
+namespace PlainBytes.System.Extensions
 {
     public static class Iterators
     {
