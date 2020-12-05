@@ -1,7 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
+
+    <Description>Collection of utility extention methods for the System.* namespace.</Description>
+    <AssemblyTitle>System extensions</AssemblyTitle>
+    <Authors>PlainBytes</Authors>
+    <AssemblyName>PlainBytes.System.Extensions</AssemblyName>
+    <PackageId>PlainBytes.System.Extensions</PackageId>
+    <PackageTags>System;Extensions;iterators;bcl;</PackageTags>
+    <PackageProjectUrl>https://github.com/PlainBytes/PlainBytes.System.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PlainBytes/PlainBytes.System.Extensions</RepositoryUrl>
+    <icon>icon.png</icon>
+    <Version>0.1.0.0</Version>
+    <AssemblyVersion>0.1.0.0</AssemblyVersion>
+    <FileVersion>0.1.0.0</FileVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="assets\icon.png" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
 </Project>
