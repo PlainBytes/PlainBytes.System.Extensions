@@ -1,8 +1,14 @@
-<img src="https://github.com/BriskBytes/BriskBytes.System.Extensions/blob/master/assets/system-extensions.png?raw=true" width="240">
+<p align="center">
+    <img width="128" align="center" src="assets/system-extensions.png" >
+</p>
 
-# System.Extensions
+<h1 align="center">
+  System.Extensions
+</h1>
 
-Collection of extension method for the BCL to ease their usage.
+<p align="center">
+ Collection of extension method for the BCL to ease their usage.
+</p>
 
 # Examples
 
