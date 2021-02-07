@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace PlainBytes.System.Extensions
+namespace PlainBytes.System.Extensions.Collections
 {
+    /// <summary>
+    /// Contains the extensions for validation and accessing collection indexes.
+    /// </summary>
     public static class IndexLookup
     {
         /// <summary>
@@ -14,7 +17,7 @@ namespace PlainBytes.System.Extensions
         /// <returns>True if the index is valid</returns>
         public static bool HasIndex<T>(this IList<T> source, int index)
         {
-            return index > -1 && index < source.Count - 1;
+            return index > -1 && index < source.Count;
         }
 
         /// <summary>

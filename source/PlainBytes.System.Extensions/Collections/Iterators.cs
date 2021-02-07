@@ -2,8 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PlainBytes.System.Extensions
+namespace PlainBytes.System.Extensions.Collections
 {
+    /// <summary>
+    /// Contains the extensions for iterating over collections.
+    /// </summary>
     public static class Iterators
     {
         /// <summary>

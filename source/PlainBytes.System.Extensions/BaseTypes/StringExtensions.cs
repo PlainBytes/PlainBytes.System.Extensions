@@ -1,4 +1,4 @@
-﻿namespace PlainBytes.System.Extensions
+﻿namespace PlainBytes.System.Extensions.BaseTypes
 {
     public static class StringExtensions
     {

@@ -1,7 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PlainBytes.System.Extensions.Collections;
 
-namespace PlainBytes.System.Extensions.Tests
+namespace PlainBytes.System.Extensions.Tests.Collections
 {
     [TestClass]
     public class IndexLookupTests
@@ -103,7 +104,7 @@ namespace PlainBytes.System.Extensions.Tests
             const int expectedValue = int.MaxValue;
 
             // Act          
-            var result = collection.AtIndexOrFallback(collection.Length - 1, expectedValue);
+            var result = collection.AtIndexOrFallback(collection.Length, expectedValue);
 
             // Assert
             Assert.AreEqual(expectedValue, result);

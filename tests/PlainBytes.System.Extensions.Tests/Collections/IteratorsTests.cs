@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using PlainBytes.System.Extensions.Collections;
 
-namespace PlainBytes.System.Extensions.Tests
+namespace PlainBytes.System.Extensions.Tests.Collections
 {
     [TestClass]
     public class IteratorsTests
