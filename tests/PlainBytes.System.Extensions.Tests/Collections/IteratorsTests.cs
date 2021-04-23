@@ -34,7 +34,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
         [TestMethod]
         [DataRow(new []{1,2,3,4,5,6})]
         [DataRow(new []{11,12,13,14,15,16})]
-        public void For_GivenACollection_ActionIsCalledWithTheCorrectIndexAndElement(IEnumerable<int> collection)
+        public void For_GivenAnEnumerable_ActionIsCalledWithTheCorrectIndexAndElement(IEnumerable<int> collection)
         {
             // Arrange 
             var evaluatedCollection = collection.ToList();
@@ -48,9 +48,27 @@ namespace PlainBytes.System.Extensions.Tests.Collections
 
             // Act 
             // Assert
-            evaluatedCollection.For(AssertStatement);
+            collection.For(AssertStatement);
         }
+        
+        [TestMethod]
+        [DataRow(new []{1,2,3,4,5,6})]
+        [DataRow(new []{11,12,13,14,15,16})]
+        public void For_GivenACollection_ActionIsCalledWithTheCorrectIndexAndElement(IList<int> collection)
+        {
+            // Arrange 
+            void AssertStatement(int index, int element)
+            {
+                var expectedIndex = collection.IndexOf(element);
 
+                Assert.AreEqual(expectedIndex, index);
+            }
+
+            // Act 
+            // Assert
+            collection.For(AssertStatement);
+        }
+        
         [TestMethod]
         [ExpectedException(typeof(NullReferenceException))]
         public void SelectWithIndex_GivenNullCollection_ShouldThrow()
@@ -64,6 +82,41 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             // Assert           
         }
 
+        [TestMethod]
+        [DataRow(new[] { 1, 2, 3, 4, 5, 6 })]
+        [DataRow(new[] { 11, 12, 13, 14, 15, 16 })]
+        public void SelectWithIndex_GivenAList_FunctionIsCalledWithTheCorrectIndexAndElement(IList<int> collection)
+        {
+            // Arrange 
+            int AssertStatement(int index, int element)
+            {
+                var expectedIndex = collection.IndexOf(element);
+
+                Assert.AreEqual(expectedIndex, index);
+
+                return index;
+            }
+
+            // Act 
+            // Assert
+            var _ = collection.SelectWithIndex(AssertStatement).ToList();
+        }
+
+        [TestMethod]
+        [DataRow(new[] { 1, 2, 3, 4, 5, 6 })]
+        [DataRow(new[] { 11, 12, 13, 14, 15, 16, 17, 18 })]
+        public void SelectWithIndex_GivenAList_ReturnsAllElements(IList<int> collection)
+        {
+            // Arrange 
+            var evaluatedCollection = collection.ToList();
+
+            // Act 
+            var result = evaluatedCollection.SelectWithIndex((i,e)=>i).ToList();
+            
+            // Assert
+            Assert.AreEqual(evaluatedCollection.Count, result.Count);
+        }
+        
         [TestMethod]
         [DataRow(new[] { 1, 2, 3, 4, 5, 6 })]
         [DataRow(new[] { 11, 12, 13, 14, 15, 16 })]
@@ -83,7 +136,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
 
             // Act 
             // Assert
-            var _ = evaluatedCollection.SelectWithIndex(AssertStatement).ToList();
+            var _ = collection.SelectWithIndex(AssertStatement).ToList();
         }
 
         [TestMethod]
@@ -95,10 +148,10 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var evaluatedCollection = collection.ToList();
 
             // Act 
-            var result = evaluatedCollection.SelectWithIndex((i,e)=>i).ToList();
+            var result = collection.SelectWithIndex((i,e)=>i).Count();
             
             // Assert
-            Assert.AreEqual(evaluatedCollection.Count, result.Count);
+            Assert.AreEqual(evaluatedCollection.Count, result);
         }
 
         [TestMethod]
@@ -189,6 +242,24 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             {
                 Assert.IsInstanceOfType(i, typeof(int));
             }
+        }
+        
+        [TestMethod]
+        public void Append_GivenCollection_ResultingCollectionShouldContainAllOftheElements()
+        {
+            // Arrange 
+            var collection = new object[] { 1, "test", 2, 3, 4m };
+            var secondCollection = new object[] { 5, "test2", 6, 7, 8m };
+
+            var expected = new List<object>();
+            expected.AddRange(collection);
+            expected.AddRange(secondCollection);
+            
+            // Act 
+            var result = collection.Append(secondCollection).ToList();
+
+            // Assert
+            CollectionAssert.AreEqual(expected, result);
         }
     }
 }

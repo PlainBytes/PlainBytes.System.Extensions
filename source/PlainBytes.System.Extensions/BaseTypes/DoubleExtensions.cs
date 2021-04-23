@@ -41,5 +41,22 @@ namespace PlainBytes.System.Extensions.BaseTypes
         /// <param name="value"><inheritdoc cref="double.IsPositiveInfinity(double)"/></param>
         /// <returns><inheritdoc cref="double.IsPositiveInfinity(double)"/></returns>
         public static bool IsPositiveInfinity(this double value) => double.IsPositiveInfinity(value);
+
+        /// <summary>
+        /// Compares two double values with the provided tolerance
+        /// </summary>
+        /// <param name="value">Source value</param>
+        /// <param name="compared">Compared value</param>
+        /// <param name="tolerance">Maximum allowed difference</param>
+        /// <returns>True if they are equal, including if both of them are NaN, false otherwise.</returns>
+        public static bool IsEqual(this double value, double compared, double tolerance = 0)
+        {
+            if (value.IsNaN() && compared.IsNaN())
+            {
+                return true;
+            }
+
+            return Math.Abs(value - compared) < tolerance;
+        }
     }
 }

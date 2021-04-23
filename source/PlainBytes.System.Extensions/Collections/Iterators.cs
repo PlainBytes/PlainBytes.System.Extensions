@@ -24,6 +24,23 @@ namespace PlainBytes.System.Extensions.Collections
         }
 
         /// <summary>
+        /// Iterates through the collection while calling the action with the current index and element.
+        /// </summary>
+        /// <typeparam name="T">The base type of the source collection elements.</typeparam>
+        /// <param name="collection">Collection on which we iterate.</param>
+        /// <param name="action">The action that will be executed for each and every element.</param>
+        public static void For<T>(this IEnumerable<T> collection, Action<int, T> action)
+        {
+            var index = 0;
+            
+            foreach (var item in collection)
+            {
+                action(index, item);
+                index++;
+            }
+        }
+        
+        /// <summary>
         /// Iterates through the collection while calling the function with the current index and element.
         /// </summary>
         /// <typeparam name="T">The base type of the source collection elements.</typeparam>
@@ -36,6 +53,25 @@ namespace PlainBytes.System.Extensions.Collections
             for (var i = 0; i < collection.Count; i++)
             {
                 yield return function(i, collection[i]);
+            }
+        }
+        
+        /// <summary>
+        /// Iterates through the collection while calling the function with the current index and element.
+        /// </summary>
+        /// <typeparam name="T">The base type of the source collection elements.</typeparam>
+        /// <typeparam name="TR">The base type of the collection elements that will be returned</typeparam>
+        /// <param name="collection">Collection on which we iterate.</param>
+        /// <param name="function">The function that will be executed for each and every element and its result is yielded</param>
+        /// <returns>Collection of results</returns>
+        public static IEnumerable<TR> SelectWithIndex<T, TR>(this IEnumerable<T> collection, Func<int, T, TR> function)
+        {
+            var index = 0;
+            
+            foreach (var item in collection)
+            {
+                yield return function(index, item);
+                index++;
             }
         }
 
@@ -85,6 +121,26 @@ namespace PlainBytes.System.Extensions.Collections
                 {
                     yield return typedElement;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Merges the two collections into a single IEnumerable{T}
+        /// </summary>
+        /// <typeparam name="T">The generic type of the collections.</typeparam>
+        /// <param name="collection">Original source collection.</param>
+        /// <param name="addition">Collection of items which will be appended.</param>
+        /// <returns>Merged collection of the two inputs.</returns>
+        public static IEnumerable<T> Append<T>(this IEnumerable<T> collection, IEnumerable<T> addition)
+        {
+            foreach (var item in collection)
+            {
+                yield return item;
+            }
+            
+            foreach (var item in addition)
+            {
+                yield return item;
             }
         }
     }
