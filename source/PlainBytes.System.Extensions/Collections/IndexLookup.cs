@@ -62,5 +62,27 @@ namespace PlainBytes.System.Extensions.Collections
 
             return fallback;
         }
+        
+        /// <summary>
+        /// Tries to get the value from the given key.
+        /// </summary>
+        /// <typeparam name="TKey">The generic type of the key</typeparam>
+        /// <typeparam name="TValue">The generic type of the value</typeparam>
+        /// <param name="source">The dictionary that is being accessed</param>
+        /// <param name="key">The key that is being evaluated</param>
+        /// <param name="fallback">The fallback value</param>
+        /// <returns>The value if the key exists, otherwise the provided fallback</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static TValue AtKeyOrFallback<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key, TValue fallback)
+        {
+            if (source.ContainsKey(key))
+            {
+                return source[key];
+            }
+
+            Debug.WriteLine($"Index is out of bounds should have been in range of 0 and {source.Count}");
+
+            return fallback;
+        }
     }
 }
