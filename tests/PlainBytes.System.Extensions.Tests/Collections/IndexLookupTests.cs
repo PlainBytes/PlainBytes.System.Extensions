@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PlainBytes.System.Extensions.Collections;
 
@@ -97,7 +98,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
         }
 
         [TestMethod]
-        public void AtIndexOrFallback_GivenInvalidIndex_ReturnDefault()
+        public void AtIndexOrFallback_GivenInvalidIndex_ReturnFallback()
         {
             // Arrange
             var collection = new[] { 1, 2, 1, 3 };
@@ -105,6 +106,47 @@ namespace PlainBytes.System.Extensions.Tests.Collections
 
             // Act          
             var result = collection.AtIndexOrFallback(collection.Length, expectedValue);
+
+            // Assert
+            Assert.AreEqual(expectedValue, result);
+        }
+
+        [TestMethod]
+        public void AtKeyOrFallback_GivenValidKey_ReturnValue()
+        {
+            // Arrange
+            const int expectedValue = 2;
+            const int fallback = -1;
+            
+            var dictionary = new Dictionary<int, int>
+            {
+                {1,1},
+                {2,expectedValue},
+                {3,3}
+            };
+
+            // Act
+            var result = dictionary.AtKeyOrFallback(2, fallback);
+
+            // Assert
+            Assert.AreEqual(expectedValue, result);
+        }
+        
+        [TestMethod]
+        public void AtKeyOrFallback_GivenValidKey_ReturnFallback()
+        {
+            // Arrange
+            const int expectedValue = -1;
+            
+            var dictionary = new Dictionary<int, int>
+            {
+                {1,1},
+                {2,2},
+                {3,3}
+            };
+
+            // Act
+            var result = dictionary.AtKeyOrFallback(4, expectedValue);
 
             // Assert
             Assert.AreEqual(expectedValue, result);
