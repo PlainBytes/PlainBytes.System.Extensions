@@ -50,5 +50,17 @@ namespace ConsoleApp
             _ = byteValue.Clamp(0, 100);
             _ = byteValue.ToBool();
         }
+        
+        public void DoubleExamples()
+        {
+            const double doubleValue = 12.34;
+
+            _ = doubleValue.Clamp(0, 100);
+            _ = doubleValue.IsInfinity();
+            _ = doubleValue.IsNegativeInfinity();
+            _ = doubleValue.IsPositiveInfinity();
+            _ = doubleValue.IsNaN();
+            _ = doubleValue.IsEqual(34.12, 0.1); // two NaNs are also evaluated as equals
+        }
     }
 }

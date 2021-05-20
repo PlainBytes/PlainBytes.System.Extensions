@@ -6,6 +6,7 @@ baseTypeExamples.StringExamples();
 baseTypeExamples.IntExamples();
 baseTypeExamples.LongExamples();
 baseTypeExamples.ByteExamples();
+baseTypeExamples.DoubleExamples();
 
 var collectionExamples = new CollectionExamples();
 
