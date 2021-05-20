@@ -7,91 +7,84 @@
 </h1>
 
 <p align="center">
- Collection of extension method for the BCL to ease their usage.
+ Collection of extension method for the BCL to ease their usage. Please feel free to submit bits that are not yet included.
 </p>
 
-# Examples
+[![GitHub](https://img.shields.io/github/license/PlainBytes/PlainBytes.System.Extensions)](https://github.com/PlainBytes/PlainBytes.System.Extensions/blob/master/LICENSE) [![Nuget](https://img.shields.io/nuget/dt/PlainBytes.System.Extensions)](https://www.nuget.org/packages/PlainBytes.System.Extensions/) ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/PlainBytes/PlainBytes.System.Extensions/master)
+<p align="center">
+ 
+</p>
 
-## Accessing an index
-
-There are many occasions when the size of the collection or the index that we want to access is unknown, for that we can use.
-
+## Examples
+### String
 ```csharp
-    if (collection.HasIndex(index))
-    {
-        // access index
-    }
+     var stringValue = "text";
+
+    _ = stringValue.IsNullOrEmpty();
+    _ = stringValue.IsNullOrWhiteSpace();
+
+    _ = stringValue.HasValue();
+    _ = stringValue.HasActualValue();
+
+    _ = "{0} {1}".FormatWith(1, 2);
 ```
-Or we could just do the following:
-
+### Numeric types
 ```csharp
-    collection.AtIndexOrDefault(index);
 
-    //Or even provide a fallback 
-    collection.AtIndexOrFallback(index, fallBackValue);
+    // Int, uint, long, ulong, byte
+    var number = 123;
+
+    _ = intValue.Clamp(0, 100);
+    _ = intValue.ToBool(); // each type has its revers bool to number.
 ```
-
-## Iterators
-
-Simple For and Select extension for ILists
-
+### Double
 ```csharp
-    collection.For((index, value) =>
-    {
-        // do
-    });
+    var doubleValue = 12.34;
 
-    var results =  collection.SelectWithIndex(index =>
-    {
-        // do
-
-        // return value
-    });
-```
-
-Simple ForEach and filter by type for IEnumerable
-```csharp
-    collection.SelectTypeOf<string>().Foreach(value =>
-    {
-        // do
-    });
+    _ = doubleValue.Clamp(0, 100);
+    _ = doubleValue.IsInfinity();
+    _ = doubleValue.IsNegativeInfinity();
+    _ = doubleValue.IsPositiveInfinity();
+    _ = doubleValue.IsNaN();
+    _ = doubleValue.IsEqual(34.12,tolerance: 0.1); //two NaNs are also evaluated as equals
 ```
 
-## Simple extensions
-
-### double
-System extensions
+### Collection access
 ```csharp
-    value.IsNaN();
-    value.IsInfinity();
-    // etc...
-```
-Clamp (int or double), inspired by the css clamp method
-```csharp
-    value.Clamp(min,max) 
-```
-### string
-System extensions and their negated counterparts (ok flow).
-```csharp
-    value.IsNullOrEmpty();
-    // negated
-    value.HasValue();
-
-    value.IsNullOrWhiteSpace();
-    // negated
-    value.HasActualValue();
+    var collection = new[] {1, 2, 3};
     
-    value.FormatWith(args); // Formats value with args
+    _ = collection.HasIndex(4);
+    _ = collection.AtIndexOrDefault(4);
+    _ = collection.AtIndexOrFallback(4, -1);
+
+    var directory = new Dictionary<int, int>();
+
+    _ = directory.AtKeyOrFallback(4, -1);
+```
+### Iterators
+```csharp
+    // Extensions for IList<T>, IEnumerable<T> and Enumerable
+
+    var collection = new[] {1, 2, 3};
+
+    collection.For((index, value) => {});
+    collection.Foreach(value => {});
+
+    _ = collection.SelectWithIndex((index, value) => value);
+    _ = collection.SelectTypeOf<double>();
+
+    var secondCollection = new[] {4, 5};
+
+    _ = collection.Append(secondCollection);
 ```
 
+## Install
 
-# Install
-
-## Package manger
+### Package manger
 
     Install-Package PlainBytes.System.Extensions
 
-## CLI
+### CLI
 
     dotnet add package PlainBytes.System.Extensions
 
