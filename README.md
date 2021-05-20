@@ -10,7 +10,7 @@
  Collection of extension method for the BCL to ease their usage. Please feel free to submit bits that are not yet included.
 </p>
 
-[![GitHub](https://img.shields.io/github/license/PlainBytes/PlainBytes.System.Extensions)](https://github.com/PlainBytes/PlainBytes.System.Extensions/blob/master/LICENSE) [![Nuget](https://img.shields.io/nuget/dt/PlainBytes.System.Extensions)](https://www.nuget.org/packages/PlainBytes.System.Extensions/) ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/PlainBytes/PlainBytes.System.Extensions/master)
+[![GitHub](https://img.shields.io/github/license/PlainBytes/PlainBytes.System.Extensions)](https://github.com/PlainBytes/PlainBytes.System.Extensions/blob/master/LICENSE) [![Nuget](https://img.shields.io/nuget/dt/PlainBytes.System.Extensions)](https://www.nuget.org/packages/PlainBytes.System.Extensions/) ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/PlainBytes/PlainBytes.System.Extensions/master)[![Build Validation](https://github.com/PlainBytes/PlainBytes.System.Extensions/actions/workflows/build.yml/badge.svg)](https://github.com/PlainBytes/PlainBytes.System.Extensions/actions/workflows/build.yml)
 <p align="center">
  
 </p>
