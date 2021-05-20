@@ -2,6 +2,9 @@
 
 namespace PlainBytes.System.Extensions.BaseTypes
 {
+    /// <summary>
+    /// Contains the string extension methods.
+    /// </summary>
     public static class StringExtensions
     {
         /// <summary>

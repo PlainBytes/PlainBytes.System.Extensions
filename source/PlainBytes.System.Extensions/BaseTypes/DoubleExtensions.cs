@@ -3,6 +3,9 @@ using System.Runtime.CompilerServices;
 
 namespace PlainBytes.System.Extensions.BaseTypes
 {
+    /// <summary>
+    /// Contains the double extension methods.
+    /// </summary>
     public static class DoubleExtensions
     {
         /// <summary>
