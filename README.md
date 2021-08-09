@@ -56,6 +56,7 @@
     _ = collection.HasIndex(4);
     _ = collection.AtIndexOrDefault(4);
     _ = collection.AtIndexOrFallback(4, -1);
+    _ = collection.IsEmpty();
 
     var directory = new Dictionary<int, int>();
 
