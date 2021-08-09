@@ -87,7 +87,7 @@ namespace PlainBytes.System.Extensions.Collections
         /// <param name="enumerable">Collection on which we iterate.</param>
         /// <param name="action">The action that will be executed for each and every element.</param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Foreach<T>(this IEnumerable<T> enumerable, Action<T> action)
+        public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
             foreach (var result in enumerable)
             {

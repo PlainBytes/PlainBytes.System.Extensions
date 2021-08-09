@@ -162,7 +162,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             _collection = null;
 
             // Act 
-            _collection.Foreach(element => { });
+            _collection.ForEach(element => { });
 
             // Assert           
         }
@@ -177,7 +177,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var results = new List<int>();
 
             // Act 
-            evaluatedCollection.Foreach(element => results.Add(element));
+            Iterators.ForEach(evaluatedCollection, element => results.Add(element));
 
             // Assert
             for (int i = 0; i < evaluatedCollection.Count; i++)
