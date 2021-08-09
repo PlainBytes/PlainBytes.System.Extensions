@@ -69,7 +69,7 @@
     var collection = new[] {1, 2, 3};
 
     collection.For((index, value) => {});
-    collection.Foreach(value => {});
+    collection.ForEach(value => {});
 
     _ = collection.SelectWithIndex((index, value) => value);
     _ = collection.SelectTypeOf<double>();
