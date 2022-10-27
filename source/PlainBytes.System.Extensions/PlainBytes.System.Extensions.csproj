@@ -11,8 +11,8 @@
     <PackageTags>System;Extensions;iterators;bcl;</PackageTags>
     <PackageProjectUrl>https://github.com/PlainBytes/PlainBytes.System.Extensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PlainBytes/PlainBytes.System.Extensions</RepositoryUrl>
-    <RepositoryType>https://github.com/PlainBytes/PlainBytes.System.Extensions/blob/master/LICENSE</RepositoryType>
-    <Version>0.6.0.1</Version>
+    <PackageLicenseUrl>https://github.com/PlainBytes/PlainBytes.System.Extensions/blob/master/LICENSE</PackageLicenseUrl>
+    <Version>0.6.0.2</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+    <None Include="README.md" Pack="true" PackagePath="\" />
     <None Include="assets\icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
