@@ -17,7 +17,7 @@ namespace PlainBytes.System.Extensions.Collections
         /// <param name="index">The index that is being evaluated</param>
         /// <returns>True if the index is valid</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool HasIndex<T>(this IList<T> source, int index)
+        public static bool HasIndex<T>(this ICollection<T> source, int index)
         {
             return index > -1 && index < source.Count;
         }
@@ -49,7 +49,7 @@ namespace PlainBytes.System.Extensions.Collections
         /// <param name="source">The collection that is being evaluated.</param>
         /// <returns>True if it has any elements, otherwise false.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsEmpty<T>(this IList<T> source)
+        public static bool IsEmpty<T>(this ICollection<T> source)
         {
             return source.Count == 0;
         }
@@ -115,7 +115,7 @@ namespace PlainBytes.System.Extensions.Collections
         /// <param name="source">The collection that is being evaluated.</param>
         /// <returns>True if it has any elements, otherwise false.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsEmpty<T>(this IReadOnlyList<T> source)
+        public static bool IsEmpty<T>(this IReadOnlyCollection<T> source)
         {
             return source.Count == 0;
         }
@@ -153,9 +153,9 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TValue AtKeyOrFallback<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> source, TKey key, TValue fallback)
         {
-            if (source.ContainsKey(key))
+            if (source.TryGetValue(key, out var value))
             {
-                return source[key];
+                return value;
             }
 
             Debug.WriteLine($"Index is out of bounds should have been in range of 0 and {source.Count}");
@@ -175,36 +175,25 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TValue AtKeyOrFallback<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key, TValue fallback)
         {
-            if (source.ContainsKey(key))
+            if (source.TryGetValue(key, out var value))
             {
-                return source[key];
+                return value;
             }
 
             Debug.WriteLine($"Index is out of bounds should have been in range of 0 and {source.Count}");
 
             return fallback;
         }
-        
+
         /// <summary>
         /// Evaluates if the collection has any elements.
         /// </summary>
-        /// <typeparam name="T">The generic type of the collection</typeparam>
-        /// <param name="source">The collection that is being evaluated.</param>
+        /// <typeparam name="TKey">Type of the key.</typeparam>
+        /// <typeparam name="TValue">Type of the value</typeparam>
+        /// <param name="source">Dictionary that is being evaluated</param>
         /// <returns>True if it has any elements, otherwise false.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsEmpty<TKey, TValue>(this IDictionary<TKey, TValue> source)
-        {
-            return source.Count == 0;
-        }
-        
-        /// <summary>
-        /// Evaluates if the collection has any elements.
-        /// </summary>
-        /// <typeparam name="T">The generic type of the collection</typeparam>
-        /// <param name="source">The collection that is being evaluated.</param>
-        /// <returns>True if it has any elements, otherwise false.</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsEmpty<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> source)
+        public static bool IsEmpty<TKey, TValue>(this IReadOnlyCollection<KeyValuePair<TKey, TValue>> source)
         {
             return source.Count == 0;
         }
