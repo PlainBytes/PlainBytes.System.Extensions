@@ -7,14 +7,14 @@ namespace ConsoleApp
     {
         public void CollectionAccessExtensions()
         {
-            IReadOnlyList<int> collection = new[] {1, 2, 3};
+            var collection = new[] {1, 2, 3};
 
             _ = collection.HasIndex(4);
             _ = collection.AtIndexOrDefault(4);
             _ = collection.AtIndexOrFallback(4, -1);
             _ = collection.IsEmpty();
             
-            IReadOnlyDictionary<int, int> directory = new Dictionary<int, int>();
+            var directory = new Dictionary<int, int>();
 
             _ = directory.AtKeyOrFallback(4, -1);
         }
