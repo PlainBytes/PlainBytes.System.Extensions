@@ -1,25 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PlainBytes.System.Extensions.Collections;
+using Xunit;
 
 namespace PlainBytes.System.Extensions.Tests.Collections
 {
-    [TestClass]
+   
     public class IndexLookupTests
     {
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [Fact]
         public void HasIndex_GivenNullCollection_ThrowsNullReferenceException()
         {
             // Arrange
             IList<int> collection = null;
 
             // Act          
-            collection.HasIndex(1);
+            Assert.Throws<NullReferenceException>(() => collection.HasIndex(1));
         }
 
-        [TestMethod]
+        [Fact]
         public void HasIndex_GivenNegativeIndex_ReturnFalse()
         {
             // Arrange
@@ -29,10 +28,10 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.HasIndex(-5);
 
             // Assert          
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void HasIndex_GivenOutOfBoundValue_ReturnFalse()
         {
             // Arrange
@@ -42,23 +41,20 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.HasIndex(collection.Count);
 
             // Assert          
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [Fact]
         public void AtIndexOrDefault_GivenNullCollection_ThrowsNullReferenceException()
         {
             // Arrange
             IList<int> collection = null;
 
-            // Act          
-            var _ = collection.AtIndexOrDefault(2);
-
-            // Assert          
+            // Assert
+            Assert.Throws<NullReferenceException>(() => collection.AtIndexOrDefault(2));
         }
 
-        [TestMethod]
+        [Fact]
         public void AtIndexOrDefaultValueType_GivenInvalidIndex_ReturnDefault()
         {
             // Arrange
@@ -68,10 +64,10 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.AtIndexOrDefault(collection.Count);
 
             // Assert
-            Assert.AreEqual(0, result);
+            Assert.Equal(0, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void AtIndexOrDefaultReferenceType_GivenInvalidIndex_ReturnDefault()
         {
             // Arrange
@@ -81,23 +77,20 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.AtIndexOrDefault(collection.Count);
 
             // Assert
-            Assert.AreEqual(null, result);
+            Assert.Null(result);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [Fact]
         public void AtIndexOrFallback_GivenNullCollection_ThrowsNullReferenceException()
         {
             // Arrange
             IList<int> collection = null;
 
-            // Act          
-            var _ = collection.AtIndexOrFallback(2, 0);
-
-            // Assert          
+            // Assert
+            Assert.Throws<NullReferenceException>(() => collection.AtIndexOrFallback(2, 0));
         }
 
-        [TestMethod]
+        [Fact]
         public void AtIndexOrFallback_GivenInvalidIndex_ReturnFallback()
         {
             // Arrange
@@ -108,21 +101,20 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.AtIndexOrFallback(collection.Count, expectedValue);
 
             // Assert
-            Assert.AreEqual(expectedValue, result);
+            Assert.Equal(expectedValue, result);
         }
         
-               [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [Fact]
         public void HasIndex_ReadOnly_GivenNullCollection_ThrowsNullReferenceException()
         {
             // Arrange
             IReadOnlyList<int> collection = null;
 
             // Act          
-            collection.HasIndex(1);
+            Assert.Throws<NullReferenceException>(() =>collection.HasIndex(1));
         }
 
-        [TestMethod]
+        [Fact]
         public void HasIndex_ReadOnly_GivenNegativeIndex_ReturnFalse()
         {
             // Arrange
@@ -132,10 +124,10 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.HasIndex(-5);
 
             // Assert          
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
+        [Fact]
         public void HasIndex_ReadOnly_GivenOutOfBoundValue_ReturnFalse()
         {
             // Arrange
@@ -145,23 +137,20 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.HasIndex(collection.Count + 1);
 
             // Assert          
-            Assert.IsFalse(result);
+            Assert.False(result);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [Fact]
         public void AtIndexOrDefault_ReadOnly_GivenNullCollection_ThrowsNullReferenceException()
         {
             // Arrange
             IReadOnlyList<int> collection = null;
 
-            // Act          
-            var _ = collection.AtIndexOrDefault(2);
-
             // Assert          
+            Assert.Throws<NullReferenceException>(() => collection.AtIndexOrDefault(2));
         }
 
-        [TestMethod]
+        [Fact]
         public void AtIndexOrDefaultValueType_ReadOnly_GivenInvalidIndex_ReturnDefault()
         {
             // Arrange
@@ -171,10 +160,10 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.AtIndexOrDefault(collection.Count + 1);
 
             // Assert
-            Assert.AreEqual(0, result);
+            Assert.Equal(0, result);
         }
 
-        [TestMethod]
+        [Fact]
         public void AtIndexOrDefaultReferenceType_ReadOnly_GivenInvalidIndex_ReturnDefault()
         {
             // Arrange
@@ -184,23 +173,20 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.AtIndexOrDefault(collection.Count + 1);
 
             // Assert
-            Assert.AreEqual(null, result);
+            Assert.Null(result);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [Fact]
         public void AtIndexOrFallback_ReadOnly_GivenNullCollection_ThrowsNullReferenceException()
         {
             // Arrange
             IReadOnlyList<int> collection = null;
 
-            // Act          
-            var _ = collection.AtIndexOrFallback(2, 0);
-
-            // Assert          
+            // Assert
+            Assert.Throws<NullReferenceException>(() => collection.AtIndexOrFallback(2, 0));
         }
 
-        [TestMethod]
+        [Fact]
         public void AtIndexOrFallback_ReadOnly_GivenInvalidIndex_ReturnFallback()
         {
             // Arrange
@@ -211,10 +197,10 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = collection.AtIndexOrFallback(collection.Count, expectedValue);
 
             // Assert
-            Assert.AreEqual(expectedValue, result);
+            Assert.Equal(expectedValue, result);
         }
         
-        [TestMethod]
+        [Fact]
         public void AtKeyOrFallback_ReadOnly_GivenValidKey_ReturnValue()
         {
             // Arrange
@@ -232,10 +218,10 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = dictionary.AtKeyOrFallback(2, fallback);
 
             // Assert
-            Assert.AreEqual(expectedValue, result);
+            Assert.Equal(expectedValue, result);
         }
         
-        [TestMethod]
+        [Fact]
         public void AtKeyOrFallback_GivenValidKey_ReturnValue()
         {
             // Arrange
@@ -253,10 +239,10 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = dictionary.AtKeyOrFallback(2, fallback);
 
             // Assert
-            Assert.AreEqual(expectedValue, result);
+            Assert.Equal(expectedValue, result);
         }
         
-        [TestMethod]
+        [Fact]
         public void AtKeyOrFallback_ReadOnly_GivenValidKey_ReturnFallback()
         {
             // Arrange
@@ -273,10 +259,10 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = dictionary.AtKeyOrFallback(4, expectedValue);
 
             // Assert
-            Assert.AreEqual(expectedValue, result);
+            Assert.Equal(expectedValue, result);
         }
         
-        [TestMethod]
+        [Fact]
         public void AtKeyOrFallback_GivenValidKey_ReturnFallback()
         {
             // Arrange
@@ -293,7 +279,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = dictionary.AtKeyOrFallback(4, expectedValue);
 
             // Assert
-            Assert.AreEqual(expectedValue, result);
+            Assert.Equal(expectedValue, result);
         }
     }
 }
