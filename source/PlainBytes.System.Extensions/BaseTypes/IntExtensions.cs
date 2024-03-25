@@ -22,7 +22,7 @@ namespace PlainBytes.System.Extensions.BaseTypes
         /// <returns><inheritdoc cref="Convert.ToBoolean(int)"/></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool ToBool(this int value) => Convert.ToBoolean(value);
-        
+
         /// <summary>
         /// Assures that the <paramref name="value"/> is in between <paramref name="minimum"/> and <paramref name="maximum"/>
         /// </summary>

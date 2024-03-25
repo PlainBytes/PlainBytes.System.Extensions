@@ -16,7 +16,7 @@ namespace PlainBytes.System.Extensions.Collections
         {
             _disposables = disposables ?? throw new ArgumentNullException(nameof(disposables));
         }
-        
+
         /// <summary>
         /// <inheritdoc cref="IDisposable.Dispose"/>
         /// </summary>

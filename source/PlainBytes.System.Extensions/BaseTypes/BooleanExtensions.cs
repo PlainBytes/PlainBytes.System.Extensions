@@ -14,14 +14,14 @@ namespace PlainBytes.System.Extensions.BaseTypes
         /// <returns><inheritdoc cref="Convert.ToInt32(bool)"/></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int ToInt(this bool value) => Convert.ToInt32(value);
-        
+
         /// <summary>
         /// <inheritdoc cref="Convert.ToUInt32(bool)"/>
         /// </summary>
         /// <returns><inheritdoc cref="Convert.ToUInt32(bool)"/></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static uint ToUInt(this bool value) => Convert.ToUInt32(value);
-        
+
         /// <summary>
         /// <inheritdoc cref="Convert.ToUInt64(bool)"/>
         /// </summary>

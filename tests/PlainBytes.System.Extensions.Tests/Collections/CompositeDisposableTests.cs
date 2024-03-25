@@ -10,13 +10,13 @@ public class CompositeDisposableTests
     private class DisposableTest : IDisposable
     {
         public int DisposedCount { get; private set; }
-        
+
         public void Dispose()
         {
             DisposedCount++;
         }
     }
-    
+
     [Fact]
     public void Constructor_GivenNullValue_Throws()
     {
@@ -33,8 +33,7 @@ public class CompositeDisposableTests
 
         // Act
         sut.Dispose();
-        
-        // Assert
+         // Assert
         Assert.All(items, item => Assert.Equal(1, item.DisposedCount));
     }
 }

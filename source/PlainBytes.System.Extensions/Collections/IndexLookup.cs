@@ -21,7 +21,7 @@ namespace PlainBytes.System.Extensions.Collections
         {
             return index > -1 && index < source.Count;
         }
-        
+
         /// <summary>
         /// Tries to get the value from the given index.
         /// </summary>
@@ -53,7 +53,7 @@ namespace PlainBytes.System.Extensions.Collections
         {
             return source.Count == 0;
         }
-        
+
         /// <summary>
         /// Tries to get the value from the given index.
         /// </summary>
@@ -74,7 +74,7 @@ namespace PlainBytes.System.Extensions.Collections
 
             return fallback;
         }
-        
+
         /// <summary>
         /// Tries to get the value from the given key.
         /// </summary>

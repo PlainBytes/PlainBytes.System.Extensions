@@ -5,7 +5,7 @@ using Xunit;
 
 namespace PlainBytes.System.Extensions.Tests.Collections
 {
-   
+
     public class IndexLookupTests
     {
         [Fact]
@@ -14,7 +14,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             // Arrange
             int[] collection = null;
 
-            // Act          
+            // Act
             Assert.Throws<NullReferenceException>(() => collection.HasIndex(1));
         }
 
@@ -27,7 +27,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             // Act
             var result = collection.HasIndex(-5);
 
-            // Assert          
+            // Assert
             Assert.False(result);
         }
 
@@ -40,7 +40,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             // Act
             var result = collection.HasIndex(collection.Length);
 
-            // Assert          
+            // Assert
             Assert.False(result);
         }
 
@@ -60,7 +60,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             // Arrange
             var collection = new[] { 1, 2, 1, 3 };
 
-            // Act          
+            // Act
             var result = collection.AtIndexOrDefault(collection.Length);
 
             // Assert
@@ -73,7 +73,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             // Arrange
             var collection = new[] { new object(), new object(), new object(), new object() };
 
-            // Act          
+            // Act
             var result = collection.AtIndexOrDefault(collection.Length);
 
             // Assert
@@ -97,20 +97,20 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var collection = new[] { 1, 2, 1, 3 };
             const int expectedValue = int.MaxValue;
 
-            // Act          
+            // Act
             var result = collection.AtIndexOrFallback(collection.Length, expectedValue);
 
             // Assert
             Assert.Equal(expectedValue, result);
         }
-        
+
         [Fact]
         public void AtKeyOrFallback_GivenValidKey_ReturnValue()
         {
             // Arrange
             const int expectedValue = 2;
             const int fallback = -1;
-            
+
             var dictionary = new Dictionary<int, int>
             {
                 {1,1},
@@ -124,13 +124,13 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             // Assert
             Assert.Equal(expectedValue, result);
         }
-        
+
         [Fact]
         public void AtKeyOrFallback_GivenValidKey_ReturnFallback()
         {
             // Arrange
             const int expectedValue = -1;
-            
+
             var dictionary = new Dictionary<int, int>
             {
                 {1,1},
