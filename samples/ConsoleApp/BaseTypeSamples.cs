@@ -50,7 +50,7 @@ namespace ConsoleApp
             _ = byteValue.Clamp(0, 100);
             _ = byteValue.ToBool();
         }
-        
+
         public void DoubleExamples()
         {
             const double doubleValue = 12.34;

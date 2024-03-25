@@ -20,7 +20,7 @@ namespace PlainBytes.System.Extensions.Collections
         public static void For<T>(this IEnumerable<T> collection, Action<int, T> action)
         {
             var index = 0;
-            
+
             foreach (var item in collection)
             {
                 action(index, item);
@@ -40,7 +40,7 @@ namespace PlainBytes.System.Extensions.Collections
         public static IEnumerable<TR> SelectWithIndex<T, TR>(this IEnumerable<T> collection, Func<int, T, TR> function)
         {
             var index = 0;
-            
+
             foreach (var item in collection)
             {
                 yield return function(index, item);
@@ -114,7 +114,7 @@ namespace PlainBytes.System.Extensions.Collections
             {
                 yield return item;
             }
-            
+
             foreach (var item in addition)
             {
                 yield return item;
