@@ -1,4 +1,5 @@
-﻿using ConsoleApp;
+﻿using System;
+using ConsoleApp;
 
 var baseTypeExamples = new BaseTypeSamples();
 
@@ -12,3 +13,5 @@ var collectionExamples = new CollectionExamples();
 
 collectionExamples.CollectionAccessExtensions();
 collectionExamples.IterationExamples();
+
+Console.WriteLine("Hi mom!");

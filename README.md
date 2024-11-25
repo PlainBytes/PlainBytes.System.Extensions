@@ -88,5 +88,3 @@
 ### CLI
 
     dotnet add package PlainBytes.System.Extensions
-
-Target platform: [.Net Standard 1.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) and above.

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.0</TargetFramework>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
 
     <Description>Collection of utility extention methods for the System.* namespace.</Description>
     <AssemblyTitle>System extensions</AssemblyTitle>
@@ -12,7 +12,7 @@
     <PackageProjectUrl>https://github.com/PlainBytes/PlainBytes.System.Extensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/PlainBytes/PlainBytes.System.Extensions</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/PlainBytes/PlainBytes.System.Extensions/blob/master/LICENSE</PackageLicenseUrl>
-    <Version>0.8.0.0</Version>
+    <Version>1.0.0.0</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <PackageIcon>icon.png</PackageIcon>
