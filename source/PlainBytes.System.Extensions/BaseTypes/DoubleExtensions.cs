@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.CompilerServices;
 
 namespace PlainBytes.System.Extensions.BaseTypes
@@ -67,6 +68,49 @@ namespace PlainBytes.System.Extensions.BaseTypes
             }
 
             return Math.Abs(value - compared) < tolerance;
+        }
+
+        /// <summary>
+        /// Converts the provided doubles into bytes.
+        /// </summary>
+        /// <param name="value">Values which should be converted into bytes.</param>
+        /// <returns>Collection of <see langword="byte"/>s.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the provided value is <see langword="null"/></exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static byte[] GetBytes(this double[] value)
+        {
+            ArgumentNullException.ThrowIfNull(value);
+
+            var numArray = new byte[value.Length * 8];
+            Buffer.BlockCopy(value, 0, numArray, 0, numArray.Length);
+            return numArray;
+        }
+
+        /// <summary>
+        /// Converts the provided bytes into doubles.
+        /// </summary>
+        /// <param name="value">Values which should be converted into doubles.</param>
+        /// <returns>Collection of <see langword="double"/>s.</returns>
+        /// <exception cref="ArgumentNullException">Thrown if the provided value is <see langword="null"/>.</exception>
+        /// <exception cref="InvalidDataException">Thrown if the number of bytes does not align with the value type.</exception>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double[] ToDoubleArray(this byte[] value)
+        {
+            ArgumentNullException.ThrowIfNull(value);
+
+            if (value.Length % 8 != 0)
+            {
+                throw new InvalidDataException("Byte Object length must be a multiple of 8");
+            }
+
+            var result = new double[value.Length / 8];
+
+            for (var i = 0; i < value.Length; i += 8)
+            {
+                result[i / 8] = BitConverter.ToDouble(value[i..(i + 8)]);
+            }
+
+            return result;
         }
     }
 }
