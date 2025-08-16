@@ -12,7 +12,7 @@
 
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageIcon>system-extensions.png</PackageIcon>
     <PackageProjectUrl>https://github.com/PlainBytes/PlainBytes.System.Extensions</PackageProjectUrl>
   </PropertyGroup>
 
