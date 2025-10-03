@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PlainBytes.System.Extensions.Collections
 {
@@ -118,6 +120,72 @@ namespace PlainBytes.System.Extensions.Collections
             foreach (var item in addition)
             {
                 yield return item;
+            }
+        }
+
+        /// <summary>
+        /// Asynchronously enumerates the elements of the source sequence and invokes the specified asynchronous action
+        /// for each element.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">The asynchronous sequence whose elements are to be processed.</param>
+        /// <param name="action">An asynchronous delegate to invoke for each element in the source sequence.</param>
+        /// <param name="token">A cancellation token that can be used to cancel the operation.</param>
+        /// <returns>A task that represents the asynchronous operation. The task completes when all elements have been processed
+        /// or the operation is canceled.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static async Task ForEachAsync<T>(this IAsyncEnumerable<T> source, Func<T, CancellationToken, ValueTask> action, CancellationToken token = default)
+        {
+            await foreach (var item in source.WithCancellation(token))
+            {
+                token.ThrowIfCancellationRequested();
+
+                await action(item, token).ConfigureAwait(false);
+            }
+        }
+
+
+        /// <summary>
+        /// Iterates through the asynchronous sequence while processing the elements.
+        /// </summary>
+        /// <param name="source">The source asynchronous sequence to process.</param>
+        /// <param name="selector">Transformer that processes the iterated items.</param>
+        /// <param name="token">A cancellation token that can be used to cancel the asynchronous iteration.</param>
+        /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
+        /// <typeparam name="TR">Type of result item.</typeparam>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static async IAsyncEnumerable<TR> SelectAsync<T, TR>(this IAsyncEnumerable<T> source, Func<T, TR> selector, [EnumeratorCancellation] CancellationToken token = default)
+        {
+            await foreach (var item in source.WithCancellation(token))
+            {
+                token.ThrowIfCancellationRequested();
+
+                yield return selector(item);
+            }
+        }
+
+        /// <summary>
+        /// Filters the elements of an asynchronous sequence based on a specified predicate.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements in the source sequence.</typeparam>
+        /// <param name="source">The source asynchronous sequence to filter.</param>
+        /// <param name="predicate">A function to test each element for a condition. The element is included in the result if the function
+        /// returns <see langword="true"/>.</param>
+        /// <param name="token">A cancellation token that can be used to cancel the asynchronous iteration.</param>
+        /// <returns>An asynchronous sequence that contains elements from the source sequence that satisfy the condition
+        /// specified by the predicate.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static async IAsyncEnumerable<T> WhereAsync<T>(this IAsyncEnumerable<T> source, Func<T, bool> predicate, [EnumeratorCancellation] CancellationToken token = default)
+        {
+            await foreach (var item in source.WithCancellation(token))
+            {
+                token.ThrowIfCancellationRequested();
+
+                if (predicate(item))
+                {
+                    yield return item;
+                }
             }
         }
     }
