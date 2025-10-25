@@ -26,7 +26,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             IAsyncEnumerable<int> source = null;
 
             // Act / Assert
-            await Assert.ThrowsAsync<NullReferenceException>(async () => await source.ForEachAsync((i, ct) => ValueTask.CompletedTask));
+            await Assert.ThrowsAsync<ArgumentNullException>(async () => await source.ForEachAsync((i, ct) => ValueTask.CompletedTask));
         }
 
         [Fact]
@@ -74,7 +74,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             IAsyncEnumerable<int> source = null;
 
             // Act / Assert
-            await Assert.ThrowsAsync<NullReferenceException>(async () =>
+            await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
                 await foreach (var _ in source.SelectAsync(i => i)) { }
             });
@@ -108,7 +108,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             IAsyncEnumerable<int> source = null;
 
             // Act / Assert
-            await Assert.ThrowsAsync<NullReferenceException>(async () =>
+            await Assert.ThrowsAsync<ArgumentNullException>(async () =>
             {
                 await foreach (var _ in source.WhereAsync(i => true)) { }
             });

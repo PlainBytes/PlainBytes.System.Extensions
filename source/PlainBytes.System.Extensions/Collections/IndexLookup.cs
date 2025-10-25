@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
@@ -19,6 +20,8 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool HasIndex<T>(this IReadOnlyCollection<T> source, int index)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             return index > -1 && index < source.Count;
         }
 
@@ -30,8 +33,10 @@ namespace PlainBytes.System.Extensions.Collections
         /// <param name="index">The index that is being evaluated</param>
         /// <returns>The value if the index is valid, otherwise the default of the collection type</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static T AtIndexOrDefault<T>(this IReadOnlyList<T> source, int index)
+        public static T? AtIndexOrDefault<T>(this IReadOnlyList<T> source, int index)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             if (source.HasIndex(index))
             {
                 return source[index];
@@ -51,6 +56,8 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsEmpty<T>(this IReadOnlyCollection<T> source)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             return source.Count == 0;
         }
 
@@ -65,6 +72,8 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static T AtIndexOrFallback<T>(this IReadOnlyList<T> source, int index, T fallback)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             if (source.HasIndex(index))
             {
                 return source[index];
@@ -87,6 +96,8 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static TValue AtKeyOrFallback<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> source, TKey key, TValue fallback)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             if (source.TryGetValue(key, out var value))
             {
                 return value;
@@ -105,8 +116,10 @@ namespace PlainBytes.System.Extensions.Collections
         /// <param name="source">Dictionary that is being evaluated</param>
         /// <returns>True if it has any elements, otherwise false.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsEmpty<TKey, TValue>(this IReadOnlyCollection<KeyValuePair<TKey, TValue>> source)
+        public static bool IsEmpty<TKey, TValue>(this IReadOnlyCollection<KeyValuePair<TKey, TValue>>? source)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            
             return source.Count == 0;
         }
     }

@@ -21,6 +21,9 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void For<T>(this IEnumerable<T> collection, Action<int, T> action)
         {
+            ArgumentNullException.ThrowIfNull(collection);
+            ArgumentNullException.ThrowIfNull(action);
+            
             var index = 0;
 
             foreach (var item in collection)
@@ -41,6 +44,9 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<TR> SelectWithIndex<T, TR>(this IEnumerable<T> collection, Func<int, T, TR> function)
         {
+            ArgumentNullException.ThrowIfNull(collection);
+            ArgumentNullException.ThrowIfNull(function);
+            
             var index = 0;
 
             foreach (var item in collection)
@@ -59,6 +65,9 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
+            ArgumentNullException.ThrowIfNull(enumerable);
+            ArgumentNullException.ThrowIfNull(action);
+            
             foreach (var result in enumerable)
             {
                 action(result);
@@ -74,6 +83,8 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<TR> SelectTypeOf<TR>(this IEnumerable enumerable)
         {
+            ArgumentNullException.ThrowIfNull(enumerable);
+            
             foreach (var element in enumerable)
             {
                 if (element is TR typedElement)
@@ -93,6 +104,8 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<TR> SelectTypeOf<T, TR>(this IEnumerable<T> enumerable)
         {
+            ArgumentNullException.ThrowIfNull(enumerable);
+            
             foreach (var element in enumerable)
             {
                 if (element is TR typedElement)
@@ -112,6 +125,9 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static IEnumerable<T> Append<T>(this IEnumerable<T> collection, IEnumerable<T> addition)
         {
+            ArgumentNullException.ThrowIfNull(collection);
+            ArgumentNullException.ThrowIfNull(addition);
+            
             foreach (var item in collection)
             {
                 yield return item;
@@ -136,6 +152,9 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static async Task ForEachAsync<T>(this IAsyncEnumerable<T> source, Func<T, CancellationToken, ValueTask> action, CancellationToken token = default)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(action);
+            
             await foreach (var item in source.WithCancellation(token))
             {
                 token.ThrowIfCancellationRequested();
@@ -157,6 +176,9 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static async IAsyncEnumerable<TR> SelectAsync<T, TR>(this IAsyncEnumerable<T> source, Func<T, TR> selector, [EnumeratorCancellation] CancellationToken token = default)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(selector);
+            
             await foreach (var item in source.WithCancellation(token))
             {
                 token.ThrowIfCancellationRequested();
@@ -178,6 +200,9 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static async IAsyncEnumerable<T> WhereAsync<T>(this IAsyncEnumerable<T> source, Func<T, bool> predicate, [EnumeratorCancellation] CancellationToken token = default)
         {
+            ArgumentNullException.ThrowIfNull(source);
+            ArgumentNullException.ThrowIfNull(predicate);
+            
             await foreach (var item in source.WithCancellation(token))
             {
                 token.ThrowIfCancellationRequested();
