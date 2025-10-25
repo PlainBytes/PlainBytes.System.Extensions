@@ -16,6 +16,8 @@ namespace PlainBytes.System.Extensions.Collections
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Dispose<T>(this IEnumerable<T> items)
         {
+            ArgumentNullException.ThrowIfNull(items);
+            
             foreach (var item in items)
             {
                 if (item is IDisposable disposable)

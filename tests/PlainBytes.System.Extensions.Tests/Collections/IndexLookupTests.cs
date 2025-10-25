@@ -9,13 +9,13 @@ namespace PlainBytes.System.Extensions.Tests.Collections
     public class IndexLookupTests
     {
         [Fact]
-        public void HasIndex_GivenNullCollection_ThrowsNullReferenceException()
+        public void HasIndex_GivenNullCollection_ThrowsArgumentNullException()
         {
             // Arrange
             int[] collection = null;
 
             // Act
-            Assert.Throws<NullReferenceException>(() => collection.HasIndex(1));
+            Assert.Throws<ArgumentNullException>(() => collection.HasIndex(1));
         }
 
         [Fact]
@@ -45,13 +45,13 @@ namespace PlainBytes.System.Extensions.Tests.Collections
         }
 
         [Fact]
-        public void AtIndexOrDefault_GivenNullCollection_ThrowsNullReferenceException()
+        public void AtIndexOrDefault_GivenNullCollection_ThrowsArgumentNullException()
         {
             // Arrange
             int[] collection = null;
 
             // Assert
-            Assert.Throws<NullReferenceException>(() => collection.AtIndexOrDefault(2));
+            Assert.Throws<ArgumentNullException>(() => collection.AtIndexOrDefault(2));
         }
 
         [Fact]
@@ -81,13 +81,13 @@ namespace PlainBytes.System.Extensions.Tests.Collections
         }
 
         [Fact]
-        public void AtIndexOrFallback_GivenNullCollection_ThrowsNullReferenceException()
+        public void AtIndexOrFallback_GivenNullCollection_ThrowsArgumentNullException()
         {
             // Arrange
             int[] collection = null;
 
             // Assert
-            Assert.Throws<NullReferenceException>(() => collection.AtIndexOrFallback(2, 0));
+            Assert.Throws<ArgumentNullException>(() => collection.AtIndexOrFallback(2, 0));
         }
 
         [Fact]

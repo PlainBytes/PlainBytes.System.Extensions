@@ -21,8 +21,13 @@ namespace PlainBytes.System.Extensions.BaseTypes
         /// Returns the name of the type, if generic than with the generic types.
         /// </summary>
         /// <param name="type">Source type.</param>
-        public static string GetFormattedName(this Type type)
+        public static string GetFormattedName(this Type? type)
         {
+            if (type == null)
+            {
+                return "null";
+            }
+            
             return FormattedNameCache.GetOrAdd(type, static t =>
             {
                 if (t.IsGenericType)

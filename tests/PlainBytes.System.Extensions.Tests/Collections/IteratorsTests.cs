@@ -23,7 +23,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             _collection = null;
 
             // Assert
-            Assert.Throws<NullReferenceException>(() => _collection.For((index, element) => { }));
+            Assert.Throws<ArgumentNullException>(() => _collection.For((index, element) => { }));
         }
 
         [Theory]
@@ -71,7 +71,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             _collection = null;
 
             // Assert
-            Assert.Throws<NullReferenceException>(() => _collection.SelectWithIndex((index, element) => element.ToString()).ToList());
+            Assert.Throws<ArgumentNullException>(() => _collection.SelectWithIndex((index, element) => element.ToString()).ToList());
         }
 
         [Theory]
@@ -153,7 +153,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             _collection = null;
 
             // Assert
-            Assert.Throws<NullReferenceException>(() => _collection.ForEach(element => { }));
+            Assert.Throws<ArgumentNullException>(() => _collection.ForEach(element => { }));
         }
 
         [Theory]
@@ -182,7 +182,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             IEnumerable collection = null;
 
             // Assert
-            Assert.Throws<NullReferenceException>(() => collection.SelectTypeOf<int>().ToList());
+            Assert.Throws<ArgumentNullException>(() => collection.SelectTypeOf<int>().ToList());
         }
 
         [Fact]
@@ -208,7 +208,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             _collection = null;
 
             // Assert
-            Assert.Throws<NullReferenceException>(() => _collection.SelectTypeOf<int>().ToList());
+            Assert.Throws<ArgumentNullException>(() => _collection.SelectTypeOf<int>().ToList());
         }
 
         [Fact]
