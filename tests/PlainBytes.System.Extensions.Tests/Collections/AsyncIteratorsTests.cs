@@ -10,15 +10,6 @@ namespace PlainBytes.System.Extensions.Tests.Collections
 {
     public class AsyncIteratorsTests
     {
-        private static async IAsyncEnumerable<T> ToAsync<T>(IEnumerable<T> source)
-        {
-            foreach (var item in source)
-            {
-                yield return item;
-                await Task.Yield(); // ensure asynchronous execution path
-            }
-        }
-
         [Fact]
         public async Task ForEachAsync_GivenNullSource_ShouldThrow()
         {
@@ -37,7 +28,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var results = new List<int>();
 
             // Act
-            await ToAsync(source).ForEachAsync((item, ct) =>
+            await source.ToAsyncEnumerable().ForEachAsync((item, ct) =>
             {
                 results.Add(item);
                 return ValueTask.CompletedTask;
@@ -64,7 +55,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             }
 
             // Act / Assert
-            await Assert.ThrowsAsync<OperationCanceledException>(async () => await ToAsync(source).ForEachAsync(Action, cts.Token));
+            await Assert.ThrowsAsync<OperationCanceledException>(async () => await source.ToAsyncEnumerable().ForEachAsync(Action, cts.Token));
         }
 
         [Fact]
@@ -88,7 +79,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var results = new List<string>();
 
             // Act
-            await foreach (var item in ToAsync(source).SelectAsync(i => $"#{i}"))
+            await foreach (var item in source.ToAsyncEnumerable().SelectAsync(i => $"#{i}"))
             {
                 results.Add(item);
             }
@@ -122,7 +113,7 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             var result = new List<int>();
 
             // Act
-            await foreach (var item in ToAsync(source).WhereAsync(i => i % 2 == 0))
+            await foreach (var item in source.ToAsyncEnumerable().WhereAsync(i => i % 2 == 0))
             {
                 result.Add(item);
             }
