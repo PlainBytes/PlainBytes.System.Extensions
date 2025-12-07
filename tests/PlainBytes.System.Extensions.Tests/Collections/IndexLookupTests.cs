@@ -144,5 +144,207 @@ namespace PlainBytes.System.Extensions.Tests.Collections
             // Assert
             Assert.Equal(expectedValue, result);
         }
+
+        [Fact]
+        public void IndexOf_Value_GivenNullCollection_ThrowsArgumentNullException()
+        {
+            // Arrange
+            int[] collection = null;
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => IndexLookup.IndexOf(collection, 1));
+        }
+
+        [Fact]
+        public void IndexOf_Value_GivenArray_ReturnsCorrectIndex()
+        {
+            // Arrange
+            var collection = new[] { 1, 2, 3, 4, 5 };
+
+            // Act
+            var result = IndexLookup.IndexOf(collection,3);
+
+            // Assert
+            Assert.Equal(2, result);
+        }
+
+        [Fact]
+        public void IndexOf_Value_GivenList_ReturnsCorrectIndex()
+        {
+            // Arrange
+            var collection = new List<int> { 10, 20, 30, 40 };
+
+            // Act
+            var result = IndexLookup.IndexOf(collection,30);
+
+            // Assert
+            Assert.Equal(2, result);
+        }
+
+        [Fact]
+        public void IndexOf_Value_GivenEnumerable_ReturnsCorrectIndex()
+        {
+            // Arrange
+            IEnumerable<string> collection = new HashSet<string> { "apple", "banana", "cherry" };
+
+            // Act
+            var result = IndexLookup.IndexOf(collection,"banana");
+
+            // Assert
+            Assert.Equal(1, result);
+        }
+
+        [Fact]
+        public void IndexOf_Value_GivenValueNotFound_ReturnsMinusOne()
+        {
+            // Arrange
+            var collection = new[] { 1, 2, 3, 4, 5 };
+
+            // Act
+            var result = IndexLookup.IndexOf(collection,10);
+
+            // Assert
+            Assert.Equal(-1, result);
+        }
+
+        [Fact]
+        public void IndexOf_Value_GivenEmptyCollection_ReturnsMinusOne()
+        {
+            // Arrange
+            var collection = Array.Empty<int>();
+
+            // Act
+            var result = IndexLookup.IndexOf(collection,1);
+
+            // Assert
+            Assert.Equal(-1, result);
+        }
+
+        [Fact]
+        public void IndexOf_Value_GivenDuplicateValues_ReturnsFirstOccurrence()
+        {
+            // Arrange
+            var collection = new[] { 1, 2, 3, 2, 5 };
+
+            // Act
+            var result = IndexLookup.IndexOf(collection,2);
+
+            // Assert
+            Assert.Equal(1, result);
+        }
+
+        [Fact]
+        public void IndexOf_Value_GivenNullValue_ReturnsCorrectIndex()
+        {
+            // Arrange
+            var collection = new[] { "a", null, "c" };
+
+            // Act
+            var result = IndexLookup.IndexOf(collection, null);
+
+            // Assert
+            Assert.Equal(1, result);
+        }
+
+        [Fact]
+        public void IndexOf_Predicate_GivenNullCollection_ThrowsArgumentNullException()
+        {
+            // Arrange
+            int[] collection = null;
+
+            // Act & Assert
+            Assert.Throws<ArgumentNullException>(() => collection.IndexOfMatch(x => x > 5));
+        }
+
+        [Fact]
+        public void IndexOf_Predicate_GivenMatchingItem_ReturnsCorrectIndex()
+        {
+            // Arrange
+            var collection = new[] { 1, 2, 3, 4, 5 };
+
+            // Act
+            var result = collection.IndexOfMatch(x => x > 3);
+
+            // Assert
+            Assert.Equal(3, result);
+        }
+
+        [Fact]
+        public void IndexOf_Predicate_GivenNoMatch_ReturnsMinusOne()
+        {
+            // Arrange
+            var collection = new[] { 1, 2, 3, 4, 5 };
+
+            // Act
+            var result = collection.IndexOfMatch(x => x > 10);
+
+            // Assert
+            Assert.Equal(-1, result);
+        }
+
+        [Fact]
+        public void IndexOf_Predicate_GivenEmptyCollection_ReturnsMinusOne()
+        {
+            // Arrange
+            var collection = Array.Empty<int>();
+
+            // Act
+            var result = collection.IndexOfMatch(x => x > 0);
+
+            // Assert
+            Assert.Equal(-1, result);
+        }
+
+        [Fact]
+        public void IndexOf_Predicate_GivenMultipleMatches_ReturnsFirstMatch()
+        {
+            // Arrange
+            var collection = new[] { 1, 5, 8, 10, 12 };
+
+            // Act
+            var result = collection.IndexOfMatch(x => x > 5);
+
+            // Assert
+            Assert.Equal(2, result);
+        }
+
+        [Fact]
+        public void IndexOf_Predicate_GivenComplexPredicate_ReturnsCorrectIndex()
+        {
+            // Arrange
+            var collection = new[] { "apple", "banana", "cherry", "date" };
+
+            // Act
+            var result = collection.IndexOfMatch(x => x.StartsWith("c"));
+
+            // Assert
+            Assert.Equal(2, result);
+        }
+
+        [Fact]
+        public void IndexOf_Predicate_GivenList_ReturnsCorrectIndex()
+        {
+            // Arrange
+            var collection = new List<int> { 10, 20, 30, 40 };
+
+            // Act
+            var result = collection.IndexOfMatch(x => x == 30);
+
+            // Assert
+            Assert.Equal(2, result);
+        }
+
+        [Fact]
+        public void IndexOf_Predicate_GivenEnumerable_ReturnsCorrectIndex()
+        {
+            // Arrange
+            IEnumerable<int> collection = new HashSet<int> { 5, 10, 15, 20 };
+
+            // Act
+            var result = collection.IndexOfMatch(x => x % 15 == 0);
+
+            // Assert
+            Assert.Equal(2, result);
+        }
     }
 }

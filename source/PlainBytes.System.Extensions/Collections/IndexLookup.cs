@@ -122,5 +122,67 @@ namespace PlainBytes.System.Extensions.Collections
             
             return source.Count == 0;
         }
+
+        /// <summary>
+        /// Tries to get the index for the given value.
+        /// </summary>
+        /// <typeparam name="T">The generic type of the collection.</typeparam>
+        /// <param name="source">The collection that is being accessed.</param>
+        /// <param name="value">The value that is for which we try to find the index.</param>
+        /// <returns>The index of the first item that is equals or -1 if not found.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int IndexOf<T>(this IEnumerable<T> source, T value)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+
+            switch (source)
+            {
+                case T[] array:
+                    return Array.IndexOf(array, value);
+                case List<T> list:
+                    return list.IndexOf(value);
+            }
+
+            var index = 0;
+
+            foreach (var item in source)
+            {
+                if (Equals(item, value))
+                {
+                    return index;
+                }
+
+                index++;
+            }
+
+            return -1;
+        }
+
+        /// <summary>
+        /// Tries to get the index for an item.
+        /// </summary>
+        /// <typeparam name="T">The generic type of the collection.</typeparam>
+        /// <param name="source">The collection that is being accessed.</param>
+        /// <param name="filter">Filter expression, that decides if a particular value is a match.</param>
+        /// <returns>The index of the first item that is matched or -1 if there is no match.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int IndexOfMatch<T>(this IEnumerable<T> source, Func<T, bool> filter)
+        {
+            ArgumentNullException.ThrowIfNull(source);
+
+            var index = 0;
+
+            foreach (var item in source)
+            {
+                if (filter(item))
+                {
+                    return index;
+                }
+
+                index++;
+            }
+
+            return -1;
+        }
     }
 }
