@@ -213,5 +213,23 @@ namespace PlainBytes.System.Extensions.Collections
                 }
             }
         }
+
+        /// <summary>
+        /// Converts an enumerable to an async enumerable.
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the enumerable.</typeparam>
+        /// <param name="source">The source enumerable to convert.</param>
+        /// <param name="cancellationToken"> Cancellation token.</param>
+        /// <returns>An async enumerable that yields the elements from the source.</returns>
+#pragma warning disable CS1998 // Async method lacks 'await' operators however it is needed for IAsyncEnumerable
+        public static async IAsyncEnumerable<T> ToAsyncEnumerable<T>(this IEnumerable<T> source, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+#pragma warning restore CS1998
+        {
+            foreach (var item in source)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+                yield return item;
+            }
+        }
     }
 }
